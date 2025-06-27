@@ -1,0 +1,122 @@
+[gd_scene load_steps=10 format=3 uid="uid://dh4amuwbky2c2"]
+
+[ext_resource type="Script" uid="uid://b8hocm50xs0ia" path="res://scripts/pillow_gift.gd" id="1_jrh8r"]
+[ext_resource type="Texture2D" uid="uid://d4kf63p45dbke" path="res://assets/sprites/pillow.png" id="2_sitwb"]
+[ext_resource type="AudioStream" uid="uid://tpd4656ruxja" path="res://assets/sounds/cat-purring-261128.mp3" id="3_cqns0"]
+[ext_resource type="AudioStream" uid="uid://bgrr4v585m4c4" path="res://assets/sounds/Harp 2 (Descending).wav" id="4_5q0r4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mcexs"]
+size = Vector2(26, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l4v4e"]
+size = Vector2(26, 8)
+
+[sub_resource type="Animation" id="Animation_73sdx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioCatPurr:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioCatPurr:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6.0]
+}
+
+[sub_resource type="Animation" id="Animation_wmc50"]
+resource_name = "sleep"
+length = 5.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioCatPurr:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioCatPurr:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.3, 4.03333, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-80.0, 6.0, 6.0, -12.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dq280"]
+_data = {
+&"RESET": SubResource("Animation_73sdx"),
+&"sleep": SubResource("Animation_wmc50")
+}
+
+[node name="PillowGift" type="Node2D"]
+position = Vector2(0, -7)
+script = ExtResource("1_jrh8r")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(0, -2)
+
+[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+position = Vector2(0, 3)
+texture = ExtResource("2_sitwb")
+offset = Vector2(0, -0.5)
+region_enabled = true
+region_rect = Rect2(3, 1, 26, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(2.53518e-06, 5)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_mcexs")
+one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="RigidBody2D"]
+position = Vector2(0, 2)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D/Area2D"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_l4v4e")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dq280")
+}
+
+[node name="AudioCatPurr" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -2)
+stream = ExtResource("3_cqns0")
+volume_db = 6.0
+bus = &"EXF"
+
+[node name="AudioReady" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -2)
+stream = ExtResource("4_5q0r4")
+volume_db = 6.0
+bus = &"EXF"
+
+[connection signal="body_entered" from="RigidBody2D" to="." method="_on_rigid_body_2d_body_entered"]
+[connection signal="body_entered" from="RigidBody2D/Area2D" to="." method="_on_area_2d_body_entered"]

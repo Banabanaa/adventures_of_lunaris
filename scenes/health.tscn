@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dt8fjvp2gdfnf"]
+
+[ext_resource type="PackedScene" uid="uid://ctm8nxbu6yukn" path="res://scenes/heart.tscn" id="1_akcoj"]
+[ext_resource type="Script" uid="uid://c62kxohln2c47" path="res://scripts/health.gd" id="1_od5r8"]
+
+[node name="Health" type="Node2D"]
+script = ExtResource("1_od5r8")
+heart_scene = ExtResource("1_akcoj")

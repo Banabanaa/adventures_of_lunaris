@@ -1,0 +1,240 @@
+[gd_scene load_steps=34 format=3 uid="uid://cupfefuvw3140"]
+
+[ext_resource type="PackedScene" uid="uid://cp681r4441wcw" path="res://scenes/player.tscn" id="1_j1nep"]
+[ext_resource type="PackedScene" uid="uid://duer46fg18w0l" path="res://levels/level_01-march-day.tscn" id="2_wkj61"]
+[ext_resource type="PackedScene" uid="uid://cp1axvotpn7on" path="res://levels/level_10-dicember-day.tscn" id="3_nlo0o"]
+[ext_resource type="PackedScene" uid="uid://brokfqo542sf4" path="res://levels/level_11-january-sunset.tscn" id="3_pijor"]
+[ext_resource type="PackedScene" uid="uid://pr238vq680uj" path="res://scenes/menu/menu.tscn" id="4_xa2at"]
+[ext_resource type="PackedScene" uid="uid://4ghcggaj7rqi" path="res://scenes/levels_manager.tscn" id="5_qpmha"]
+[ext_resource type="PackedScene" uid="uid://wd8oly8x7wcd" path="res://levels/level_04-june-day.tscn" id="6_jlyr3"]
+[ext_resource type="PackedScene" uid="uid://dwyc5j2wp866i" path="res://levels/level_03-may-night.tscn" id="7_f7phy"]
+[ext_resource type="PackedScene" uid="uid://crm2fjqexrpmo" path="res://levels/level_02-april-sunset.tscn" id="7_ht6q1"]
+[ext_resource type="PackedScene" uid="uid://by35tvo1m8xnw" path="res://levels/level_06-august-night.tscn" id="7_th7gj"]
+[ext_resource type="PackedScene" uid="uid://bbsywe855aik" path="res://levels/level_05-july-sunset.tscn" id="8_aq81y"]
+[ext_resource type="Script" uid="uid://d0161n5f8lvk" path="res://scripts/game.gd" id="9_e0r0p"]
+[ext_resource type="PackedScene" uid="uid://u28n8p27vc74" path="res://levels/level_07-september-day.tscn" id="9_k8b5b"]
+[ext_resource type="PackedScene" uid="uid://dgu1n1dnbvyrs" path="res://levels/level_08-october-sunset.tscn" id="10_8l5qf"]
+[ext_resource type="PackedScene" uid="uid://b8h3ongrp0llt" path="res://scenes/hud.tscn" id="10_uu1k2"]
+[ext_resource type="PackedScene" uid="uid://0xb75p0aaasi" path="res://scenes/center_message.tscn" id="11_83eps"]
+[ext_resource type="PackedScene" uid="uid://60vk4t5ipivh" path="res://levels/level_09-november-night.tscn" id="11_y30b2"]
+[ext_resource type="Texture2D" uid="uid://bol3jog2n4cd" path="res://assets/sprites/point-light.png" id="12_csocx"]
+[ext_resource type="PackedScene" uid="uid://b3xl7qbcrsg64" path="res://levels/level_12-february-night.tscn" id="14_c5v1c"]
+[ext_resource type="AudioStream" uid="uid://cn1lcp1r5cxj6" path="res://assets/sounds/negative_beeps-6008.mp3" id="15_h2i1v"]
+[ext_resource type="PackedScene" uid="uid://c26rfr21fu77p" path="res://scenes/settings_menu.tscn" id="15_qbdqg"]
+[ext_resource type="AudioStream" uid="uid://75j5o3ux7jpm" path="res://assets/sounds/level-completed-90734.mp3" id="16_qq0ks"]
+[ext_resource type="PackedScene" uid="uid://c3ucpjbgqp1dn" path="res://scenes/score_manager.tscn" id="22_y0270"]
+[ext_resource type="PackedScene" uid="uid://dpkb5rubsq4ho" path="res://scenes/high_scores.tscn" id="23_g5soy"]
+[ext_resource type="PackedScene" uid="uid://blmx6b1qtor3b" path="res://scenes/instructions.tscn" id="25_6ci46"]
+[ext_resource type="Script" uid="uid://dcs01xopkc25x" path="res://scripts/instructions.gd" id="26_k0peb"]
+
+[sub_resource type="Animation" id="Animation_dfsma"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_68r12"]
+resource_name = "zoom_in"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(3, 3)]
+}
+
+[sub_resource type="Animation" id="Animation_480to"]
+resource_name = "zoom_out"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:zoom")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(2, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xv5l3"]
+_data = {
+&"RESET": SubResource("Animation_dfsma"),
+&"zoom_in": SubResource("Animation_68r12"),
+&"zoom_out": SubResource("Animation_480to")
+}
+
+[sub_resource type="Animation" id="Animation_esx5c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LevelCompleted/Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_en10l"]
+resource_name = "finale"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Camera2D:zoom")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(3, 3), Vector2(1.5, 1.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LevelCompleted/Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g7emv"]
+_data = {
+&"RESET": SubResource("Animation_esx5c"),
+&"finale": SubResource("Animation_en10l")
+}
+
+[node name="Game" type="Node2D"]
+script = ExtResource("9_e0r0p")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -2001.0
+offset_top = -1466.0
+offset_right = 3375.0
+offset_bottom = 1342.0
+color = Color(0, 0.0196078, 0.0235294, 1)
+
+[node name="LevelsManager" parent="." instance=ExtResource("5_qpmha")]
+visible = false
+levels = Array[PackedScene]([ExtResource("2_wkj61"), ExtResource("7_ht6q1"), ExtResource("7_f7phy"), ExtResource("6_jlyr3"), ExtResource("8_aq81y"), ExtResource("7_th7gj"), ExtResource("9_k8b5b"), ExtResource("10_8l5qf"), ExtResource("11_y30b2"), ExtResource("3_nlo0o"), ExtResource("3_pijor"), ExtResource("14_c5v1c")])
+
+[node name="Menu" parent="." instance=ExtResource("4_xa2at")]
+
+[node name="Player" parent="." instance=ExtResource("1_j1nep")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+enabled = false
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player/Camera2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_xv5l3")
+}
+
+[node name="PlayerLight" type="PointLight2D" parent="Player"]
+position = Vector2(-1, -7)
+color = Color(1, 0.844833, 0.51, 1)
+energy = 0.0
+shadow_color = Color(0, 0, 0, 1)
+texture = ExtResource("12_csocx")
+
+[node name="HUD" parent="." instance=ExtResource("10_uu1k2")]
+visible = false
+
+[node name="LevelCompleted" parent="." instance=ExtResource("11_83eps")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Label" type="Label" parent="LevelCompleted"]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 78.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "score +1000"
+horizontal_alignment = 1
+
+[node name="GameOver" parent="." instance=ExtResource("11_83eps")]
+visible = false
+message = "GAME OVER"
+
+[node name="SettingsCanvas" type="CanvasLayer" parent="."]
+
+[node name="SettingsMenu" parent="SettingsCanvas" instance=ExtResource("15_qbdqg")]
+unique_name_in_owner = true
+visible = false
+
+[node name="AudioGameOver" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource("15_h2i1v")
+bus = &"EXF"
+
+[node name="AudioLevelCompleted" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource("16_qq0ks")
+bus = &"EXF"
+
+[node name="ScoreManager" parent="." node_paths=PackedStringArray("high_scores") instance=ExtResource("22_y0270")]
+high_scores = NodePath("../HighScores")
+
+[node name="HighScores" parent="." instance=ExtResource("23_g5soy")]
+visible = false
+
+[node name="AnimationFinale" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_g7emv")
+}
+
+[node name="Instructions" parent="." instance=ExtResource("25_6ci46")]
+visible = false
+script = ExtResource("26_k0peb")
+
+[connection signal="level_loaded" from="LevelsManager" to="." method="_on_level_loaded"]
+[connection signal="start_game" from="Menu" to="." method="_on_start_game"]
+[connection signal="visibility_changed" from="SettingsCanvas/SettingsMenu" to="." method="_on_settings_menu_visibility_changed"]
+[connection signal="update_clock" from="ScoreManager" to="." method="_on_score_clock_update"]
+[connection signal="visibility_changed" from="Instructions" to="." method="_on_instructions_visibility_changed"]

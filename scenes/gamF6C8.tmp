@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://cupfefuvw3140"]
+
+[ext_resource type="PackedScene" uid="uid://cp681r4441wcw" path="res://scenes/player.tscn" id="1_j1nep"]
+[ext_resource type="Script" path="res://scripts/menu_floor.gd" id="4_e2tnp"]
+[ext_resource type="PackedScene" uid="uid://wd8oly8x7wcd" path="res://scenes/levels/level_1.tscn" id="6_fqh5w"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="9_e0r0p"]
+[ext_resource type="PackedScene" uid="uid://b8h3ongrp0llt" path="res://scenes/hud.tscn" id="10_uu1k2"]
+[ext_resource type="AudioStream" uid="uid://dgwoa8ehxm2mw" path="res://assets/sounds/hurt.wav" id="11_butqt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tinu3"]
+size = Vector2(320, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3sq1"]
+size = Vector2(8, 98)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("9_e0r0p")
+
+[node name="Player" parent="." instance=ExtResource("1_j1nep")]
+z_index = 5
+
+[node name="MainCamera" type="Camera2D" parent="Player"]
+offset = Vector2(0, -20)
+zoom = Vector2(4, 4)
+limit_bottom = 200
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+
+[node name="Level1" parent="." instance=ExtResource("6_fqh5w")]
+
+[node name="HUD" parent="." instance=ExtResource("10_uu1k2")]
+visible = false
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamHurt" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_butqt")
+
+[node name="Menu" type="Node2D" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="Menu"]
+modulate = Color(0.906726, 0.197724, 0.465542, 1)
+offset_left = -80.0
+offset_top = 8.0
+offset_right = 80.0
+offset_bottom = 96.0
+
+[node name="StartButton" type="Button" parent="Menu/Panel"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 24.0
+offset_right = 112.0
+offset_bottom = 55.0
+text = "START"
+metadata/_edit_use_anchors_ = true
+
+[node name="Floor" type="StaticBody2D" parent="Menu"]
+script = ExtResource("4_e2tnp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Menu/Floor"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_tinu3")
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Menu/Floor"]
+position = Vector2(-164, -39)
+shape = SubResource("RectangleShape2D_p3sq1")
+disabled = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Menu/Floor"]
+position = Vector2(164, -39)
+shape = SubResource("RectangleShape2D_p3sq1")
+disabled = true

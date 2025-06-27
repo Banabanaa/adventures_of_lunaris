@@ -1,0 +1,86 @@
+[gd_scene load_steps=23 format=3 uid="uid://cupfefuvw3140"]
+
+[ext_resource type="PackedScene" uid="uid://cp681r4441wcw" path="res://scenes/player.tscn" id="1_j1nep"]
+[ext_resource type="PackedScene" uid="uid://duer46fg18w0l" path="res://levels/level_11-spring-day.tscn" id="2_wkj61"]
+[ext_resource type="PackedScene" uid="uid://cp1axvotpn7on" path="res://levels/level_41-dicember-day.tscn" id="3_nlo0o"]
+[ext_resource type="PackedScene" uid="uid://brokfqo542sf4" path="res://levels/level_42-january-sunset.tscn" id="3_pijor"]
+[ext_resource type="PackedScene" uid="uid://pr238vq680uj" path="res://menu/menu.tscn" id="4_xa2at"]
+[ext_resource type="PackedScene" uid="uid://4ghcggaj7rqi" path="res://scenes/levels_manager.tscn" id="5_qpmha"]
+[ext_resource type="PackedScene" uid="uid://wd8oly8x7wcd" path="res://levels/level_21-summer-day.tscn" id="6_jlyr3"]
+[ext_resource type="PackedScene" uid="uid://dwyc5j2wp866i" path="res://levels/level_13-spring-night.tscn" id="7_f7phy"]
+[ext_resource type="PackedScene" uid="uid://crm2fjqexrpmo" path="res://levels/level_12-spring-sunset.tscn" id="7_ht6q1"]
+[ext_resource type="PackedScene" uid="uid://by35tvo1m8xnw" path="res://levels/level_23-summer-night.tscn" id="7_th7gj"]
+[ext_resource type="PackedScene" uid="uid://bbsywe855aik" path="res://levels/level_22-summer-sunset.tscn" id="8_aq81y"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="9_e0r0p"]
+[ext_resource type="PackedScene" uid="uid://u28n8p27vc74" path="res://levels/level_31-fall-day.tscn" id="9_k8b5b"]
+[ext_resource type="PackedScene" uid="uid://dgu1n1dnbvyrs" path="res://levels/level_32-fall-sunset.tscn" id="10_8l5qf"]
+[ext_resource type="PackedScene" uid="uid://b8h3ongrp0llt" path="res://scenes/hud.tscn" id="10_uu1k2"]
+[ext_resource type="PackedScene" uid="uid://0xb75p0aaasi" path="res://scenes/center_message.tscn" id="11_83eps"]
+[ext_resource type="PackedScene" uid="uid://60vk4t5ipivh" path="res://levels/level_33-fall-night.tscn" id="11_y30b2"]
+[ext_resource type="Texture2D" uid="uid://bol3jog2n4cd" path="res://assets/sprites/point-light.png" id="12_csocx"]
+[ext_resource type="AudioStream" uid="uid://cn1lcp1r5cxj6" path="res://assets/sounds/negative_beeps-6008.mp3" id="15_h2i1v"]
+[ext_resource type="PackedScene" uid="uid://c26rfr21fu77p" path="res://scenes/settings_menu.tscn" id="15_qbdqg"]
+[ext_resource type="AudioStream" uid="uid://75j5o3ux7jpm" path="res://assets/sounds/level-completed-90734.mp3" id="16_qq0ks"]
+[ext_resource type="PackedScene" uid="uid://c3ucpjbgqp1dn" path="res://scenes/score_manager.tscn" id="22_y0270"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("9_e0r0p")
+initial_level_index = 0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1856.0
+offset_top = -1464.0
+offset_right = 3520.0
+offset_bottom = 1344.0
+color = Color(0.0184167, 0.011, 0.1, 1)
+
+[node name="LevelsManager" parent="." instance=ExtResource("5_qpmha")]
+visible = false
+levels = Array[PackedScene]([ExtResource("2_wkj61"), ExtResource("7_ht6q1"), ExtResource("7_f7phy"), ExtResource("6_jlyr3"), ExtResource("8_aq81y"), ExtResource("7_th7gj"), ExtResource("9_k8b5b"), ExtResource("10_8l5qf"), ExtResource("11_y30b2"), ExtResource("3_nlo0o"), ExtResource("3_pijor")])
+
+[node name="Menu" parent="." instance=ExtResource("4_xa2at")]
+
+[node name="Player" parent="." instance=ExtResource("1_j1nep")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+enabled = false
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+
+[node name="PlayerLight" type="PointLight2D" parent="Player"]
+position = Vector2(-1, -7)
+color = Color(1, 0.844833, 0.51, 1)
+energy = 0.0
+shadow_color = Color(0, 0, 0, 1)
+texture = ExtResource("12_csocx")
+
+[node name="HUD" parent="." instance=ExtResource("10_uu1k2")]
+visible = false
+
+[node name="LevelCompleted" parent="." instance=ExtResource("11_83eps")]
+visible = false
+
+[node name="GameOver" parent="." instance=ExtResource("11_83eps")]
+visible = false
+message = "GAME OVER"
+
+[node name="SettingsCanvas" type="CanvasLayer" parent="."]
+
+[node name="SettingsMenu" parent="SettingsCanvas" instance=ExtResource("15_qbdqg")]
+unique_name_in_owner = true
+visible = false
+
+[node name="AudioGameOver" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_h2i1v")
+bus = &"EXF"
+
+[node name="AudioLevelCompleted" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_qq0ks")
+bus = &"EXF"
+
+[node name="ScoreManager" parent="." instance=ExtResource("22_y0270")]
+
+[connection signal="level_loaded" from="LevelsManager" to="." method="_on_level_loaded"]
+[connection signal="start_game" from="Menu" to="." method="_on_start_game"]
+[connection signal="visibility_changed" from="SettingsCanvas/SettingsMenu" to="." method="_on_settings_menu_visibility_changed"]

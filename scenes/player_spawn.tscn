@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bk1awu1884xan"]
+
+[ext_resource type="Script" uid="uid://brqdro4qf5inr" path="res://scripts/player_spawn.gd" id="1_t2ay5"]
+[ext_resource type="Texture2D" uid="uid://i6ht2afefq3i" path="res://assets/sprites/lunaris.png" id="2_g6wl4"]
+
+[node name="PlayerSpawn" type="Node2D"]
+script = ExtResource("1_t2ay5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -12)
+texture = ExtResource("2_g6wl4")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)

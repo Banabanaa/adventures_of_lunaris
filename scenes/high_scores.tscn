@@ -1,0 +1,203 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpkb5rubsq4ho"]
+
+[ext_resource type="Script" path="res://scripts/high_scores.gd" id="1_uu85t"]
+
+[node name="HighScores" type="CanvasLayer"]
+script = ExtResource("1_uu85t")
+
+[node name="Control" type="Control" parent="."]
+modulate = Color(0, 1, 0.564706, 1)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0125, 0.05, 0.0375, 1)
+
+[node name="MainContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopContainer" type="HBoxContainer" parent="Control/MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HighScores" type="VBoxContainer" parent="Control/MainContainer/TopContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 32
+
+[node name="spacer" type="Label" parent="Control/MainContainer/TopContainer/HighScores"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="Control/MainContainer/TopContainer/HighScores"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "HIGH SCORES"
+horizontal_alignment = 1
+
+[node name="PromptContainer" type="HBoxContainer" parent="Control/MainContainer/TopContainer/HighScores"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Control/MainContainer/TopContainer/HighScores/PromptContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AliasEdit" type="LineEdit" parent="Control/MainContainer/TopContainer/HighScores/PromptContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "name"
+max_length = 12
+
+[node name="SaveScoreValue" type="Label" parent="Control/MainContainer/TopContainer/HighScores/PromptContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "10000"
+
+[node name="SaveScoreButton" type="Button" parent="Control/MainContainer/TopContainer/HighScores/PromptContainer"]
+layout_mode = 2
+text = "SAVE"
+
+[node name="Label2" type="Label" parent="Control/MainContainer/TopContainer/HighScores/PromptContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/MainContainer/TopContainer/HighScores"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScoresContainer" type="GridContainer" parent="Control/MainContainer/TopContainer/HighScores/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="Label" type="Label" parent="Control/MainContainer/TopContainer/HighScores/ScrollContainer/ScoresContainer"]
+layout_mode = 2
+text = "Player name"
+
+[node name="Label2" type="Label" parent="Control/MainContainer/TopContainer/HighScores/ScrollContainer/ScoresContainer"]
+layout_mode = 2
+text = "10000"
+
+[node name="spacer2" type="Label" parent="Control/MainContainer/TopContainer/HighScores"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ScoreRules" type="VBoxContainer" parent="Control/MainContainer/TopContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 32
+
+[node name="spacer" type="Label" parent="Control/MainContainer/TopContainer/ScoreRules"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Control/MainContainer/TopContainer/ScoreRules"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "SCORE  RULES"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Control/MainContainer/TopContainer/ScoreRules"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 2
+
+[node name="Clock" type="Label" parent="Control/MainContainer/TopContainer/ScoreRules/GridContainer"]
+layout_mode = 2
+text = "Every Second passed"
+
+[node name="Clock2" type="Label" parent="Control/MainContainer/TopContainer/ScoreRules/GridContainer"]
+layout_mode = 2
+text = "-1"
+
+[node name="Croquette" type="Label" parent="Control/MainContainer/TopContainer/ScoreRules/GridContainer"]
+layout_mode = 2
+text = "Collect one Croquette"
+
+[node name="Croquette2" type="Label" parent="Control/MainContainer/TopContainer/ScoreRules/GridContainer"]
+layout_mode = 2
+text = "+10"
+
+[node name="All croquettes" type="Label" parent="Control/MainContainer/TopContainer/ScoreRules/GridContainer"]
+layout_mode = 2
+text = "Collect all Croquettes"
+
+[node name="All croquettes2" type="Label" parent="Control/MainContainer/TopContainer/ScoreRules/GridContainer"]
+layout_mode = 2
+text = "+100"
+
+[node name="Slime" type="Label" parent="Control/MainContainer/TopContainer/ScoreRules/GridContainer"]
+layout_mode = 2
+text = "Destroy one Slime"
+
+[node name="Slime2" type="Label" parent="Control/MainContainer/TopContainer/ScoreRules/GridContainer"]
+layout_mode = 2
+text = "+100"
+
+[node name="HealthUp" type="Label" parent="Control/MainContainer/TopContainer/ScoreRules/GridContainer"]
+layout_mode = 2
+text = "Gain one Heart"
+
+[node name="HealthUp2" type="Label" parent="Control/MainContainer/TopContainer/ScoreRules/GridContainer"]
+layout_mode = 2
+text = "+100"
+
+[node name="HealthDown" type="Label" parent="Control/MainContainer/TopContainer/ScoreRules/GridContainer"]
+layout_mode = 2
+text = "Lose  one Heart"
+
+[node name="HealthDown2" type="Label" parent="Control/MainContainer/TopContainer/ScoreRules/GridContainer"]
+layout_mode = 2
+text = "-100"
+
+[node name="Garden completed" type="Label" parent="Control/MainContainer/TopContainer/ScoreRules/GridContainer"]
+layout_mode = 2
+text = "Complete one Garden"
+
+[node name="Garden completed2" type="Label" parent="Control/MainContainer/TopContainer/ScoreRules/GridContainer"]
+layout_mode = 2
+text = "+1000"
+
+[node name="Drown" type="Label" parent="Control/MainContainer/TopContainer/ScoreRules/GridContainer"]
+layout_mode = 2
+text = "Drown :("
+
+[node name="Drown2" type="Label" parent="Control/MainContainer/TopContainer/ScoreRules/GridContainer"]
+layout_mode = 2
+text = "-1000"
+
+[node name="Press tab" type="Label" parent="Control/MainContainer"]
+layout_mode = 2
+text = "Press TAB to close"
+horizontal_alignment = 1
+
+[node name="spacer" type="Label" parent="Control/MainContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="text_changed" from="Control/MainContainer/TopContainer/HighScores/PromptContainer/AliasEdit" to="." method="_on_alias_edit_text_changed"]
+[connection signal="button_down" from="Control/MainContainer/TopContainer/HighScores/PromptContainer/SaveScoreButton" to="." method="_on_save_score_button_button_down"]

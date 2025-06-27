@@ -1,0 +1,210 @@
+[gd_scene load_steps=15 format=4 uid="uid://pr238vq680uj"]
+
+[ext_resource type="Script" uid="uid://cbdh88uxlrls0" path="res://scripts/menu.gd" id="1_we6r1"]
+[ext_resource type="FontFile" uid="uid://lcbth1reodl4" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_phe01"]
+[ext_resource type="FontFile" uid="uid://c7le2efbjcl6u" path="res://assets/fonts/PixelOperator8.ttf" id="3_sgjfo"]
+[ext_resource type="Script" uid="uid://b0lmbr4ulrjpf" path="res://scripts/menu_floor.gd" id="4_3vefq"]
+[ext_resource type="TileSet" uid="uid://bs8nwwe2iktin" path="res://data/clouds.tres" id="5_iueul"]
+[ext_resource type="Texture2D" uid="uid://cl2snoy6cc6no" path="res://assets/sprites/MILLOSA_LOGO_GAME_TRANSPARENT.png" id="6_t0a87"]
+[ext_resource type="Script" uid="uid://dqnn144qniunp" path="res://scripts/clouds.gd" id="6_vqwgn"]
+[ext_resource type="TileSet" uid="uid://de4mw7ng1vgu3" path="res://data/level_tileset.tres" id="7_ro1xc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tinu3"]
+size = Vector2(384, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3sq1"]
+size = Vector2(8, 146)
+
+[sub_resource type="Animation" id="Animation_sjct2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1e448"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qw22o"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lo4ky"]
+_data = {
+&"RESET": SubResource("Animation_sjct2"),
+&"fade_in": SubResource("Animation_1e448"),
+&"fade_out": SubResource("Animation_qw22o")
+}
+
+[node name="Menu" type="Node2D"]
+script = ExtResource("1_we6r1")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_left = -320.0
+offset_top = -152.0
+offset_right = 320.0
+offset_bottom = 112.0
+color = Color(0.99332, 0.714116, 0.84501, 1)
+
+[node name="Clouds" type="TileMapLayer" parent="."]
+position = Vector2(-344, -24)
+scale = Vector2(0.5, 0.5)
+tile_map_data = PackedByteArray("AAA9AP7/AgAAAAAAAAApAP3/AgADAAAAAAASAP3/AgADAAAAAAAHAP3/AgADAAEAAAATAP//AgADAAEAAAAgAPr/AgADAAEAAAA2AP7/AgADAAEAAAA+APz/AgACAAIAAAAMAPX/AgAAAAIAAAAIAPX/AgACAAIAAAANAPb/AgADAAAAAAAYAPf/AgAAAAEAAAAcAPr/AgAAAAAAAADr////AgAAAAAAAADv////AgACAAIAAADm//7/AgADAAEAAAD8////AgADAAAAAAAOAP7/AgADAAAAAAAKAPv/AgACAAIAAAAnAPn/AgAAAAAAAAAdAPz/AgACAAIAAADY/wAAAgACAAIAAADR/wAAAgAAAAAAAADW////AgADAAEAAADV/wEAAgADAAAAAAD3//7/AgAAAAEAAAAyAPr/AgADAAAAAADk//b/AgADAAEAAADr//X/AgAAAAAAAADt//n/AgADAAAAAAD2//b/AgADAAAAAAD6//r/AgADAAEAAAABAPr/AgAAAAAAAAACAPj/AgACAAIAAADD//T/AgADAAAAAADE//z/AgAAAAEAAADH//j/AgADAAEAAADJ//3/AgADAAAAAADO//j/AgAAAAAAAADP//b/AgACAAIAAADU//v/AgADAAEAAADV//P/AgACAAIAAADX//n/AgACAAIAAADZ//P/AgAAAAIAAADa//T/AgADAAAAAADb//z/AgADAAAAAADf//v/AgADAAAAAADg//3/AgADAAEAAADl//X/AgAAAAEAAAC2//j/AgAAAAAAAAC4//z/AgADAAAAAADB//n/AgADAAAAAADF//3/AgADAAEAAADM//3/AgAAAAAAAADN//v/AgACAAIAAAC6//v/AgACAAIAAAC8/wEAAgACAAIAAAC+//v/AgAAAAIAAAC///z/AgADAAAAAACS//r/AgACAAIAAACT//f/AgAAAAAAAACU//X/AgACAAIAAACW////AgAAAAAAAACZ//r/AgADAAEAAACa//L/AgACAAIAAACa/wAAAgADAAAAAACb//7/AgADAAEAAACc//j/AgACAAIAAACd////AgACAAIAAACe//L/AgAAAAIAAACf//P/AgADAAAAAACg//v/AgADAAAAAACk//r/AgADAAAAAACl//z/AgADAAEAAACp//X/AgADAAEAAACq//T/AgAAAAEAAACr//3/AgADAAEAAACw//T/AgAAAAAAAACw//7/AgAAAAAAAACy//j/AgADAAAAAAC0//7/AgACAAIAAABj//n/AgADAAEAAABk//H/AgACAAIAAABk////AgADAAAAAABl//3/AgADAAEAAABm//f/AgACAAIAAABn//7/AgACAAIAAABo//H/AgAAAAIAAABp//L/AgADAAAAAABq//r/AgADAAAAAABu//n/AgADAAAAAABv//v/AgADAAEAAABz//T/AgADAAEAAAB0//P/AgAAAAEAAAB1//z/AgADAAEAAAB6//P/AgAAAAAAAAB6//3/AgAAAAAAAAB8//f/AgADAAAAAAB+//3/AgACAAIAAACA//f/AgAAAAAAAACC//v/AgADAAAAAACE//r/AgACAAIAAACG/wAAAgACAAIAAACI//r/AgAAAAIAAACJ//v/AgADAAAAAACL//j/AgADAAAAAACN//P/AgADAAAAAACO//v/AgAAAAEAAACP//z/AgADAAEAAACR//f/AgADAAEAAACT//z/AgADAAAAAAA4APT/AgACAAIAAAA+APf/AgACAAIAAAAtAPf/AgAAAAEAAAAgAP//AgAAAAEAAABBAPn/AgAAAAIAAAA=")
+tile_set = ExtResource("5_iueul")
+script = ExtResource("6_vqwgn")
+speed = 2.0
+
+[node name="container" type="Panel" parent="."]
+offset_left = -320.0
+offset_right = 320.0
+offset_bottom = 112.0
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="container"]
+layout_mode = 0
+offset_left = 128.0
+offset_right = 512.0
+offset_bottom = 112.0
+color = Color(0.566537, 0.239337, 0.61697, 1)
+
+[node name="Label3" type="Label" parent="container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.142857
+anchor_right = 1.0
+anchor_bottom = -0.142857
+offset_left = 149.0
+offset_top = 111.0
+offset_right = 349.0
+offset_bottom = 135.0
+grow_horizontal = 2
+scale = Vector2(0.3, 0.3)
+theme_override_colors/font_color = Color(0.197339, 9.19297e-05, 0.240175, 0.658824)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.215686)
+theme_override_fonts/font = ExtResource("2_phe01")
+theme_override_font_sizes/font_size = 24
+text = "MILLOSA, IVANA MARIEL   |   BSCS 3-2"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.142857
+anchor_right = 1.0
+anchor_bottom = -0.142857
+offset_left = 145.0
+offset_top = -85.0
+offset_right = -57.0
+offset_bottom = 20.0
+grow_horizontal = 2
+scale = Vector2(0.8, 0.8)
+theme_override_colors/font_color = Color(0.197339, 9.19297e-05, 0.240175, 0.658824)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.215686)
+theme_override_fonts/font = ExtResource("2_phe01")
+theme_override_font_sizes/font_size = 24
+text = "
+ADVENTURES OF
+LUNARIS
+"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.214286
+anchor_bottom = -0.214286
+offset_left = 280.0
+offset_top = 48.0
+offset_right = 360.0
+offset_bottom = 80.0
+theme_override_colors/font_color = Color(0.997833, 0.87, 1, 1)
+theme_override_fonts/font = ExtResource("3_sgjfo")
+theme_override_font_sizes/font_size = 16
+text = "START!"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.142857
+anchor_right = 1.0
+anchor_bottom = -0.142857
+offset_left = 225.0
+offset_top = 85.0
+offset_right = -222.0
+offset_bottom = 93.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.996078, 0.870588, 1, 1)
+theme_override_fonts/font = ExtResource("3_sgjfo")
+theme_override_font_sizes/font_size = 8
+text = "PRESS ESC KEY TO VIEW SETTINGS"
+horizontal_alignment = 1
+
+[node name="MillosaLogoGameTransparent" type="Sprite2D" parent="container"]
+position = Vector2(148, 89)
+scale = Vector2(0.197183, 0.197183)
+texture = ExtResource("6_t0a87")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+script = ExtResource("4_3vefq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_tinu3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground"]
+position = Vector2(-192, -47)
+shape = SubResource("RectangleShape2D_p3sq1")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground"]
+position = Vector2(192, -55)
+shape = SubResource("RectangleShape2D_p3sq1")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_lo4ky")
+}
+
+[node name="Tiles" type="TileMapLayer" parent="."]
+use_parent_material = true
+position = Vector2(512, -16)
+tile_map_data = PackedByteArray("AADb/wAAAQAKAAEAAADi/wAAAQABAAYAAADd/wAAAQABAAMAAADX/wAAAQAHAAgAAADq//3/AQACAAQAAADq////AQADAAcAAADq/wAAAQAEAAgAAADV//3/AQACAAQAAADV////AQADAAcAAADV/wAAAQADAAgAAADl/wAAAQAJAAMAAAA=")
+tile_set = ExtResource("7_ro1xc")
+
+[connection signal="pressed" from="container/StartButton" to="." method="_on_start_button_pressed"]

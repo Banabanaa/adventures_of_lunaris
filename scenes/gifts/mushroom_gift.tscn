@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://bxo1deb10alw3"]
+
+[ext_resource type="Script" uid="uid://dfyae3fbr3uip" path="res://scripts/mushroom_gift.gd" id="1_0w4yy"]
+[ext_resource type="Texture2D" uid="uid://cf8sr5p2kni10" path="res://assets/sprites/items_.png" id="1_xww7b"]
+[ext_resource type="AudioStream" uid="uid://bg6sl1v4861rt" path="res://assets/sounds/Check 2.wav" id="3_j0g25"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_juqdm"]
+bounce = 0.4
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vc1fj"]
+radius = 4.0
+height = 10.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_55353"]
+radius = 4.0
+height = 8.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5a8yn"]
+radius = 4.0
+height = 10.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4o6r4"]
+radius = 5.0
+
+[node name="Mushroom" type="RigidBody2D"]
+position = Vector2(0, -13)
+collision_layer = 2
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_juqdm")
+script = ExtResource("1_0w4yy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_xww7b")
+region_enabled = true
+region_rect = Rect2(35, 3, 10, 10)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_vc1fj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_55353")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CapsuleShape2D_5a8yn")
+disabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("CircleShape2D_4o6r4")
+
+[node name="AudioPopup" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_j0g25")
+pitch_scale = 0.6
+bus = &"EXF"

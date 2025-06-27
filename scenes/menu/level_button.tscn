@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5db6jy8av0xe"]
+
+[ext_resource type="FontFile" uid="uid://lcbth1reodl4" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_bocnt"]
+[ext_resource type="Script" uid="uid://xgvqikn2qrx3" path="res://scripts/level_button.gd" id="2_a2sqb"]
+
+[node name="LevelButton" type="Button"]
+anchors_preset = -1
+anchor_left = 0.190476
+anchor_top = 0.25
+anchor_right = 0.333333
+anchor_bottom = 0.25
+offset_left = -243.809
+offset_top = -180.0
+offset_right = -354.666
+offset_bottom = -163.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_bocnt")
+theme_override_font_sizes/font_size = 8
+text = "Level 1"
+script = ExtResource("2_a2sqb")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

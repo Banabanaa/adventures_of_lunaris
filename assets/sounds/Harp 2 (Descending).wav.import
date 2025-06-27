@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bgrr4v585m4c4"
+path="res://.godot/imported/Harp 2 (Descending).wav-1bbee50f638f0f649b4660c7e114d9ba.sample"
+
+[deps]
+
+source_file="res://assets/sounds/Harp 2 (Descending).wav"
+dest_files=["res://.godot/imported/Harp 2 (Descending).wav-1bbee50f638f0f649b4660c7e114d9ba.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

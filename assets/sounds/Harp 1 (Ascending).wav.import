@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dvjpytegf2qpx"
+path="res://.godot/imported/Harp 1 (Ascending).wav-69aa408f5af41f39f0452be96aa510bc.sample"
+
+[deps]
+
+source_file="res://assets/sounds/Harp 1 (Ascending).wav"
+dest_files=["res://.godot/imported/Harp 1 (Ascending).wav-69aa408f5af41f39f0452be96aa510bc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

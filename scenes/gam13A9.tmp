@@ -1,0 +1,121 @@
+[gd_scene load_steps=12 format=3 uid="uid://cupfefuvw3140"]
+
+[ext_resource type="PackedScene" uid="uid://cp681r4441wcw" path="res://scenes/player.tscn" id="1_j1nep"]
+[ext_resource type="Script" path="res://scripts/menu_floor.gd" id="4_e2tnp"]
+[ext_resource type="FontFile" uid="uid://lcbth1reodl4" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="4_tnjqs"]
+[ext_resource type="FontFile" uid="uid://c7le2efbjcl6u" path="res://assets/fonts/PixelOperator8.ttf" id="5_7gg1a"]
+[ext_resource type="PackedScene" uid="uid://b5db6jy8av0xe" path="res://scenes/menu/level_button.tscn" id="5_c1kdi"]
+[ext_resource type="PackedScene" uid="uid://wd8oly8x7wcd" path="res://scenes/levels/level_1.tscn" id="6_65vhj"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="9_e0r0p"]
+[ext_resource type="PackedScene" uid="uid://b8h3ongrp0llt" path="res://scenes/hud.tscn" id="10_uu1k2"]
+[ext_resource type="AudioStream" uid="uid://dgwoa8ehxm2mw" path="res://assets/sounds/hurt.wav" id="11_butqt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tinu3"]
+size = Vector2(320, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3sq1"]
+size = Vector2(8, 98)
+
+[node name="Game" type="Node2D" node_paths=PackedStringArray("menu", "hud", "currentPlayer")]
+script = ExtResource("9_e0r0p")
+menu = NodePath("Menu")
+hud = NodePath("HUD")
+currentPlayer = NodePath("Player")
+
+[node name="HUD" parent="." instance=ExtResource("10_uu1k2")]
+visible = false
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AudioStreamHurt" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource("11_butqt")
+
+[node name="Menu" type="Node2D" parent="."]
+
+[node name="background" type="Panel" parent="Menu"]
+modulate = Color(0.180392, 1, 0, 1)
+offset_left = -304.0
+offset_top = -176.0
+offset_right = 304.0
+offset_bottom = 152.0
+
+[node name="container" type="Panel" parent="Menu"]
+modulate = Color(0.906726, 0.197724, 0.465542, 1)
+offset_left = -160.0
+offset_right = 160.0
+offset_bottom = 112.0
+
+[node name="StartButton" type="Button" parent="Menu/container"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.190476
+anchor_top = 0.25
+anchor_right = 0.333333
+anchor_bottom = 0.25
+offset_left = 72.0
+offset_top = 43.0
+offset_right = 88.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_tnjqs")
+theme_override_font_sizes/font_size = 8
+text = "START"
+
+[node name="Level1Button" parent="Menu/container" instance=ExtResource("5_c1kdi")]
+layout_mode = 0
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 224.0
+offset_top = 72.0
+offset_right = 282.0
+offset_bottom = 88.0
+grow_horizontal = 1
+grow_vertical = 1
+level = ExtResource("6_65vhj")
+
+[node name="Label" type="Label" parent="Menu/container"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -24.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_7gg1a")
+theme_override_font_sizes/font_size = 16
+text = "Vincent a.k.a the Ceto"
+horizontal_alignment = 1
+
+[node name="Floor" type="StaticBody2D" parent="Menu"]
+script = ExtResource("4_e2tnp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Menu/Floor"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_tinu3")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Menu/Floor"]
+position = Vector2(-164, -39)
+shape = SubResource("RectangleShape2D_p3sq1")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Menu/Floor"]
+position = Vector2(164, -39)
+shape = SubResource("RectangleShape2D_p3sq1")
+
+[node name="Player" parent="." instance=ExtResource("1_j1nep")]
+z_index = 5
+
+[node name="MainCamera" type="Camera2D" parent="Player"]
+offset = Vector2(0, 20)
+zoom = Vector2(4, 4)
+limit_bottom = 200
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+
+[connection signal="pressed" from="Menu/container/StartButton" to="." method="_on_start_button_pressed"]

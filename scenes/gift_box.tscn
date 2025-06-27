@@ -1,0 +1,146 @@
+[gd_scene load_steps=11 format=3 uid="uid://bw1mv4iofpo4r"]
+
+[ext_resource type="Script" uid="uid://cce1h65xox81m" path="res://scripts/gift_box.gd" id="1_03l4n"]
+[ext_resource type="Texture2D" uid="uid://c2hd627gafe1r" path="res://assets/sprites/four-seasons-tileset.png" id="2_o5kdr"]
+[ext_resource type="AudioStream" uid="uid://dgwoa8ehxm2mw" path="res://assets/sounds/hurt.wav" id="3_ye0wg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6rne"]
+size = Vector2(16, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lknd7"]
+size = Vector2(14, 2)
+
+[sub_resource type="Animation" id="Animation_gfvou"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gxh2v"]
+resource_name = "push"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -3), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1eymk"]
+_data = {
+&"RESET": SubResource("Animation_gfvou"),
+&"push": SubResource("Animation_gxh2v")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hdt85"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_5n3w3"]
+color = Color(0, 1, 0.466667, 0.623529)
+
+[node name="GiftBox" type="Node2D"]
+script = ExtResource("1_03l4n")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_d6rne")
+
+[node name="Area2D" type="Area2D" parent="StaticBody2D"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Area2D"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_lknd7")
+
+[node name="SoilEnabled" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("2_o5kdr")
+region_enabled = true
+region_rect = Rect2(0, 32, 16, 16)
+
+[node name="SoilDisabled" type="Sprite2D" parent="StaticBody2D"]
+visible = false
+texture = ExtResource("2_o5kdr")
+region_enabled = true
+region_rect = Rect2(16, 32, 16, 16)
+
+[node name="SandEnabled" type="Sprite2D" parent="StaticBody2D"]
+visible = false
+texture = ExtResource("2_o5kdr")
+region_enabled = true
+region_rect = Rect2(48, 32, 16, 16)
+
+[node name="SandDisabled" type="Sprite2D" parent="StaticBody2D"]
+visible = false
+texture = ExtResource("2_o5kdr")
+region_enabled = true
+region_rect = Rect2(32, 48, 16, 16)
+
+[node name="ClayEnabled" type="Sprite2D" parent="StaticBody2D"]
+visible = false
+texture = ExtResource("2_o5kdr")
+region_enabled = true
+region_rect = Rect2(64, 32, 16, 16)
+
+[node name="ClayDisabled" type="Sprite2D" parent="StaticBody2D"]
+visible = false
+texture = ExtResource("2_o5kdr")
+region_enabled = true
+region_rect = Rect2(80, 32, 16, 16)
+
+[node name="StoneEnabled" type="Sprite2D" parent="StaticBody2D"]
+visible = false
+texture = ExtResource("2_o5kdr")
+region_enabled = true
+region_rect = Rect2(112, 32, 16, 16)
+
+[node name="StoneDisabled" type="Sprite2D" parent="StaticBody2D"]
+visible = false
+texture = ExtResource("2_o5kdr")
+region_enabled = true
+region_rect = Rect2(128, 32, 16, 16)
+
+[node name="AudioLocked" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ye0wg")
+pitch_scale = 2.0
+bus = &"EXF"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1eymk")
+}
+speed_scale = 2.0
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -5.0
+offset_top = 8.0
+offset_right = 5.0
+offset_bottom = 12.0
+theme_override_styles/background = SubResource("StyleBoxFlat_hdt85")
+theme_override_styles/fill = SubResource("StyleBoxLine_5n3w3")
+max_value = 12.0
+step = 1.0
+value = 6.0
+show_percentage = false
+
+[node name="ProgressTimer" type="Timer" parent="ProgressBar"]
+
+[connection signal="body_entered" from="StaticBody2D/Area2D" to="." method="_on_body_entered"]
+[connection signal="timeout" from="ProgressBar/ProgressTimer" to="." method="update_progress"]

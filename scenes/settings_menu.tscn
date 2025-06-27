@@ -1,0 +1,193 @@
+[gd_scene load_steps=2 format=3 uid="uid://c26rfr21fu77p"]
+
+[ext_resource type="Script" uid="uid://ldpf8ipwuqa1" path="res://scripts/settings_menu.gd" id="1_27sk7"]
+
+[node name="SettingsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_27sk7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0114775, 0.0487888, 0.0353418, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+modulate = Color(0, 1, 0.566667, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Spacer" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Input Map"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 16
+columns = 2
+
+[node name="WalkLeftCTRL" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Left or A"
+
+[node name="WalkLeftLabel" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Walk left"
+
+[node name="WalkRightCTRL" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Right or D"
+
+[node name="WalkRightLabel" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Walk right"
+
+[node name="JumpCTRL" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Space"
+
+[node name="JumpLabel" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Jump"
+
+[node name="PawCTRL" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "X or Shift"
+
+[node name="PawLabel" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Paw"
+
+[node name="NightViewCTRL" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "N"
+
+[node name="NightViewLabel" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "toggle Night View"
+
+[node name="ZoomToggleCTRL" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Z"
+
+[node name="ZoomToggleLabel" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "toggle Zoom"
+
+[node name="Spacer" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="Spacer2" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+
+[node name="DisplayModeCTRL2" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "CTRL+W"
+
+[node name="DisplayModeLabel2" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "set Window mode"
+
+[node name="ToggleSoundCTRL" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "CTRL+S"
+
+[node name="ToggleSoundLabel" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "toggle Sounds"
+
+[node name="ToggleMusicCTRL" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "CTRL+M"
+
+[node name="ToggleMusicLabel" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "toggle Music"
+
+[node name="IntructionsCTRL" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "CTRL+I"
+
+[node name="IntructionsLabel" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "toggle Instructions"
+
+[node name="HighScoresCTRL" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "TAB"
+
+[node name="HighScoresLabel" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "toggle High Scores"
+
+[node name="SettingsCTRL" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "ESC"
+
+[node name="SettingsLabel" type="Label" parent="VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "toggle Settings"
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

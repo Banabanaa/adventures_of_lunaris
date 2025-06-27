@@ -1,0 +1,20 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bs8nwwe2iktin"]
+
+[ext_resource type="Texture2D" uid="uid://bim6w7mrp0ojc" path="res://assets/sprites/clouds.png" id="1_c3fbe"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1cf4d"]
+texture = ExtResource("1_c3fbe")
+texture_region_size = Vector2i(32, 32)
+0:0/size_in_atlas = Vector2i(3, 1)
+0:0/0 = 0
+3:0/0 = 0
+3:1/0 = 0
+0:1/size_in_atlas = Vector2i(2, 1)
+0:1/0 = 0
+0:2/size_in_atlas = Vector2i(2, 1)
+0:2/0 = 0
+2:2/size_in_atlas = Vector2i(2, 1)
+2:2/0 = 0
+
+[resource]
+sources/2 = SubResource("TileSetAtlasSource_1cf4d")
